@@ -23,27 +23,53 @@ public class ArrayTest {
 //        }
 
         // 测试1 构造一个Array
-        Array array1 = new Array();
-        Array array2 = new Array(12);
+//        Array<Integer> array1 = new Array();
+//        Array<Integer> array2 = new Array(12);
+//
+//        // 测试 getCapacity
+//        System.out.println(array1.getCapacity());
+//        System.out.println(array2.getCapacity());
+//
+//        // 测试add 方法
+//        for (int i = 0; i < array1.getCapacity(); i++) {
+//            array1.add(i, i);
+//        }
+//        System.out.println(array1);
+//
+//        array2.addLast(12);
+//        array2.addFirst(-1);
+//        System.out.println(array2);
+//
+//        array2.remove(0);
+//        System.out.println(array2);
+//
+//        array2.removeElement(12);
+//        System.out.println(array2);
+//
+//        Array<Student> studentArray = new Array<>();
+//        studentArray.addLast(new Student("young", 100));
+//        studentArray.addLast(new Student("amy", 60));
+//        studentArray.addLast(new Student("alice", 70));
+//        System.out.println(studentArray);
 
-        // 测试 getCapacity
-        System.out.println(array1.getCapacity());
-        System.out.println(array2.getCapacity());
-
-        // 测试add 方法
-        for (int i = 0; i < array1.getCapacity(); i++) {
-            array1.add(i, i);
+        // 测试2 Array的扩容 与 缩容
+        Array<Integer> integerArray = new Array<>();
+        for (int i = 0; i < integerArray.getCapacity(); i++) {
+            integerArray.add(i, i);
         }
-        System.out.println(array1);
 
-        array2.addLast(12);
-        array2.addFirst(-1);
-        System.out.println(array2);
+        System.out.println(integerArray);
 
-        array2.remove(0);
-        System.out.println(array2);
+        integerArray.addLast(10);
+        System.out.println(integerArray);
 
-        array2.removeElement(12);
-        System.out.println(array2);
+        integerArray.removeLast();
+        System.out.println(integerArray);
+
+        for (int i = 0; i < 5; i++) {
+            integerArray.removeLast();
+        }
+
+        System.out.println(integerArray);
     }
 }

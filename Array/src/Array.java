@@ -53,12 +53,13 @@ public class Array<E> {
 
     // 在第inde个位置插入元素e
     public void add(int index, E e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("addLast failed, Array is full");
-        }
-
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("add failed, index is Illegal");
+        }
+
+        if (size == data.length) {
+//            resize(2 * data.length);
+            resize(data.length << 1);
         }
 
         for (int i = size - 1; i >= index; i--) {
@@ -119,6 +120,15 @@ public class Array<E> {
             data[i - 1] = data[i];
         }
         size --;
+        data[size] = null;
+//        if (size == data.length / 2)
+//        if (size == data.length >> 1) {
+//            resize(data.length >> 1);
+//        }
+        // 使用Lazy方法
+        if (size == data.length >> 2 && data.length >> 1 != 0) {
+            resize(data.length >> 1);
+        }
         return res;
     }
 
@@ -132,7 +142,7 @@ public class Array<E> {
         return remove(size - 1);
     }
 
-    // 从元素中删除元素
+    // 从元素中删除元素e
     public void removeElement(E e) {
         int index = find(e);
         if (index != -1) {
@@ -140,7 +150,16 @@ public class Array<E> {
         }
     }
 
+    // 扩容
+    public void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
 
+    // 在第index个位置,插入元素e
 
     @Override
     public String toString() {
